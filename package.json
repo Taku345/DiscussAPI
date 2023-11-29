@@ -21,6 +21,7 @@
   "dependencies": {
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
+    "sanctum": "^1.9.0",
     "zod": "^3.22.4"
   }
 }

@@ -4,6 +4,8 @@
 use App\Http\Controllers\Api\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,22 @@ Route::middleware('auth:sanctum')->group(function () {
   });
 });
 Route::apiResource('/rooms', RoomController::class);
+
+Route::get('users', function () {
+  return User::all();
+});
+Route::middleware('auth:sanctum')->get('users-secure', function () {
+  return User::all();
+});
+
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
+
+Route::get('variable_dump', function () {
+  dump(env('SANCTUM_STATEFUL_DOMAINS', 'SANCTUM_STATEFUL_DOMAINS未設定'));
+  dump(env('SESSION_DOMAIN', 'VITE_SESSION_DOMAIN未設定'));
+  dump(env('APP_ENV', 'APP_ENV未設定'));
+});
 
 //以下は古い書き方？viteを使わない場合の？なのかも？
 // Route::group(['middleware' => ['api', 'cors']], function () {

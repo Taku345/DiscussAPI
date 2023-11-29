@@ -28,7 +28,7 @@ class RoomController extends Controller
   public function store(Request $request)
   {
     $room = Room::create([
-      'user_id' => Auth::id(),
+      'user_id' => 1,
       'name' => $request->name,
       'description' => $request->description,
       'started_at' => $request->started_at,

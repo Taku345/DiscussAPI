@@ -16,7 +16,8 @@ return new class extends Migration
       $table->foreignId('user_id')->constrained('users');
       $table->foreignId('room_id')->constrained('rooms');
       $table->primary(['user_id', 'room_id']);
-      $table->tinyInteger('user_type')->default('0'); //ホスト、ゲスト、オブザーバー
+      $table->tinyInteger('user_role')->default('0'); //ホスト、ゲスト、オブザーバー
+      $table->boolean('sidebar_visible')->default(true);
       $table->timestamp('joined_at')->useCurrent();
       $table->timestamp('last_read_at')->nullable(true);
       $table->timestamps();

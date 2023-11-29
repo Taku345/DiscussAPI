@@ -28,7 +28,8 @@ class RoomUserFactory extends Factory
     return [
       'user_id' => $keypair[0],
       'room_id' => $keypair[1],
-      'user_type' => '0', //ホスト、ゲスト、オブザーバー
+      'user_role' => '0', //ホスト、ゲスト、オブザーバー
+      'sidebar_visible' => true,
       'joined_at' => $this->faker->dateTimeBetween('-30 days', '-15 days'),
       'last_read_at' => $this->faker->dateTimeBetween('-16 days', '+15 days'),
     ];
