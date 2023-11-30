@@ -4,7 +4,7 @@ return [
 
 'paths' => ['*'],
 'allowed_methods' => ['*'],
-'allowed_origins' => ['https://takuma432.shop'],
+'allowed_origins' => [env('SESSION_PROTOCOL').env('SESSION_DOMAIN')],
 'allowed_origins_patterns' => [],
 'allowed_headers' => ['*'],
 'exposed_headers' => ['*'],

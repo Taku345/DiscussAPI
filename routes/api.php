@@ -27,15 +27,18 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/user', function (Request $request) {
     return $request->user();
   });
+  Route::get('users-secure', function () {
+    return User::all();
+  });
 });
 Route::apiResource('/rooms', RoomController::class);
 
 Route::get('users', function () {
   return User::all();
 });
-Route::middleware('auth:sanctum')->get('users-secure', function () {
-  return User::all();
-});
+// Route::middleware('auth:sanctum')->get('users-secure', function () {
+//   return User::all();
+// });
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
