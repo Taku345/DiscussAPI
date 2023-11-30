@@ -14,10 +14,10 @@ class Kernel extends HttpKernel
    * @var array<int, class-string|string>
    */
   protected $middleware = [
-    \App\Http\Middleware\CorsMiddleware::class,
+    \Illuminate\Http\Middleware\HandleCors::class,
+    // \App\Http\Middleware\CorsMiddleware::class,
     // \App\Http\Middleware\TrustHosts::class,
     \App\Http\Middleware\TrustProxies::class,
-    \Illuminate\Http\Middleware\HandleCors::class,
     \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
     \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
     \App\Http\Middleware\TrimStrings::class,
@@ -46,6 +46,7 @@ class Kernel extends HttpKernel
       \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class, //有効に変更
       \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
+      \App\Http\Middleware\VerifyCsrfToken::class,
     ],
   ];
 

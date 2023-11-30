@@ -27,15 +27,18 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/user', function (Request $request) {
     return $request->user();
   });
+  Route::get('users-secure', function () {
+    return User::all();
+  });
 });
 Route::apiResource('/rooms', RoomController::class);
 
 Route::get('users', function () {
   return User::all();
 });
-Route::middleware('auth:sanctum')->get('users-secure', function () {
-  return User::all();
-});
+// Route::middleware('auth:sanctum')->get('users-secure', function () {
+//   return User::all();
+// });
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
@@ -47,13 +50,13 @@ Route::get('variable_dump', function () {
 });
 
 //以下は古い書き方？viteを使わない場合の？なのかも？
-// Route::group(['middleware' => ['api', 'cors']], function () {
-//   Route::options('rooms', function () {
-//     return response()->json();
-//   });
-//   Route::resource('rooms', RoomController::class);
-//   // Route::resource('rooms', 'Api\RoomController'); //なぜかエラー、どこかでApiフォルダも認識するなどの設定が必要？
-// });
+Route::group(['middleware' => ['api', 'cors']], function () {
+  Route::options('rooms', function () {
+    return response()->json();
+  });
+  // Route::resource('rooms', RoomController::class);
+  // Route::resource('rooms', 'Api\RoomController'); //なぜかエラー、どこかでApiフォルダも認識するなどの設定が必要？
+});
 
 Route::post('/tokens/create', function (Request $request) {
   $token = $request->user()->createToken($request->token_name);
