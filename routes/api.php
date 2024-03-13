@@ -44,9 +44,12 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 Route::get('variable_dump', function () {
-  dump(env('SANCTUM_STATEFUL_DOMAINS', 'SANCTUM_STATEFUL_DOMAINS未設定'));
-  dump(env('SESSION_DOMAIN', 'VITE_SESSION_DOMAIN未設定'));
-  dump(env('APP_ENV', 'APP_ENV未設定'));
+  // dump(env('SANCTUM_STATEFUL_DOMAINS', 'SANCTUM_STATEFUL_DOMAINS未設定'));
+  // dump(env('SESSION_DOMAIN', 'VITE_SESSION_DOMAIN未設定'));
+  // dump(env('APP_ENV', 'APP_ENV未設定'));
+  dump(config('sanctum.stateful'));
+  dump(config('cors'));
+  dump(config('session.domain'));
 });
 
 //以下は古い書き方？viteを使わない場合の？なのかも？
