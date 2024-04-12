@@ -22,15 +22,19 @@ use App\Http\Controllers\LoginController;
 //   return $request->user();
 // });
 
-
+//ログイン済みの場合のルート
 Route::middleware('auth:sanctum')->group(function () {
+
   Route::get('/user', function (Request $request) {
     return $request->user();
   });
+
   Route::get('users-secure', function () {
     return User::all();
   });
 });
+
+//以下、未ログインでも可
 Route::apiResource('/rooms', RoomController::class);
 
 Route::get('users', function () {
