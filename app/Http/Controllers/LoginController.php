@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,6 +40,9 @@ class LoginController extends Controller
 
     $request->session()->regenerateToken();
 
-    return response()->json(true);
+    return
+      new JsonResponse([
+        'message' => 'Unauthenticated.',
+      ]);
   }
 }
